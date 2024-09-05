@@ -1,0 +1,7 @@
+const fs = require('fs')
+const data = JSON.parse(fs.readFileSync('dados.json', 'utf8'))
+const valores = data.map(item => item.valor).filter(valor => valor > 0)
+const media = (valores.reduce((sum, valor) => sum + valor, 0) / valores.length).toFixed(2)
+console.log(`Menor valor de faturamento: ${Math.min(...valores)}`)
+console.log(`Maior valor de faturamento: ${Math.max(...valores)}`)
+console.log(`Número de dias com faturamento acima da média: ${valores.filter(valor => valor > media).length}`)
